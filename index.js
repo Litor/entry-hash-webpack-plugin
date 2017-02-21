@@ -18,7 +18,7 @@ webpackUbaseHashPlugin.prototype.apply = function (compiler) {
       var appName = item.replace(/^([^\/]*)\/.*/, '$1');
       var originHtml = compilation.assets[item]._value + '';
       var hash = getHash(item, assets);
-      var mainName = self.isProduction ? (this.entryName+'-' + hash + '.js') : this.entryName+'.js'
+      var mainName = self.isProduction ? (self.entryName+'-' + hash + '.js') : self.entryName+'.js'
       var newHtml = originHtml.replace(/\<\/body\>/, '\<\/body\>\n<script src="./' + mainName + '"></script>');
 
       compilation.assets[item] = new ConcatSource(newHtml)
